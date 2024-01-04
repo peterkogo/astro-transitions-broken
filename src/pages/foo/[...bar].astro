@@ -1,0 +1,24 @@
+---
+import { slide, fade } from "astro:transitions";
+
+import Layout from "../../layouts/Layout.astro";
+import Overlay from "../../components/Overlay.astro";
+import Persistent from "../../components/Persistent";
+
+import type { GetStaticPaths } from "astro";
+export const getStaticPaths = (() => {
+  return [{ params: { bar: "bar" } }, { params: { bar: undefined } }];
+}) satisfies GetStaticPaths;
+---
+
+<Layout title="This does not work" transition:name="layout">
+  <Persistent transition:name="persistent" transition:persist client:load />
+  {
+    Astro.params.bar && (
+      <Overlay
+        transition:name="overlay"
+        transition:animate={fade({ duration: "5s" })}
+      />
+    )
+  }
+</Layout>
