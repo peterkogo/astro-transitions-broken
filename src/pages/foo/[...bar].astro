@@ -44,11 +44,7 @@ const myFade = {
   }
 </style>
 
-<Layout
-  title="This does not work"
-  transition:name="layout"
-  transition:animate={myFade}
->
+<Layout title="This does not work" transition:name="layout">
   <Persistent transition:name="persistent" transition:persist client:load />
   {
     Astro.params.bar && (
