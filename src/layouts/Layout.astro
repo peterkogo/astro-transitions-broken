@@ -18,6 +18,16 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    <style>
+      @keyframes flyInOut {
+        from {
+          transform: translateY(0%);
+        }
+        to {
+          transform: translateY(100%);
+        }
+      }
+    </style>
   </head>
   <body>
     <slot />
@@ -54,6 +64,7 @@ const { title } = Astro.props;
       }
       body {
         margin: 0;
+        overflow: hidden;
       }
     </style>
   </body>

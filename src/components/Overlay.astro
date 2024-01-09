@@ -1,5 +1,31 @@
+---
+// This is a custom animation
+const anim = {
+  old: {
+    name: "flyInOut",
+    duration: "1s",
+    easing: "linear",
+    // fillMode: "forwards",
+  },
+  new: {
+    name: "flyInOut",
+    duration: "1s",
+    direction: "reverse",
+    easing: "linear",
+    // fillMode: "forwards",
+  },
+};
+
+const myFade = {
+  forwards: anim,
+  backwards: anim,
+};
+---
+
 <a href="/foo">
-  <div class="container">Go back to /foo</div>
+  <div class="container" transition:name="overlay" transition:animate={myFade}>
+    Go back to /foo
+  </div>
 </a>
 
 <style>
