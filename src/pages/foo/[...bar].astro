@@ -1,20 +1,16 @@
 ---
-import { slide, fade } from "astro:transitions";
-
 import Layout from "../../layouts/Layout.astro";
 import Overlay from "../../components/Overlay.astro";
 import Persistent from "../../components/Persistent";
 
 import type { GetStaticPaths } from "astro";
+
 export const getStaticPaths = (() => {
   return [{ params: { bar: "bar" } }, { params: { bar: undefined } }];
 }) satisfies GetStaticPaths;
 ---
 
-<Layout title="This does not work" transition:name="layout">
-  <!-- <div transition:name="persistent" transition:persist> -->
+<Layout title="This does not work" transition:name="layout" transition:persist>
   <Persistent client:load transition:name="persistent" transition:persist />
-  <!-- </div> -->
-
   {Astro.params.bar && <Overlay />}
 </Layout>

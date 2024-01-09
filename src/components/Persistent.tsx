@@ -1,4 +1,3 @@
-import { navigate } from "astro:transitions/client";
 import { useState } from "react";
 
 const style = {
@@ -17,15 +16,10 @@ const style = {
 } satisfies React.CSSProperties;
 
 function Persistent() {
-  const [id, setId] = useState(Math.random());
+  const [id, _] = useState(Math.random());
   return (
     <a href="/foo/bar">
-      <div
-        // onClick={() => {
-        //   navigate("/foo/bar");
-        // }}
-        style={style}
-      >
+      <div style={style}>
         <p>Go to /foo/bar</p>
         <p style={{ fontSize: "0.5em" }}>This ID should stay the same: {id}</p>
       </div>
