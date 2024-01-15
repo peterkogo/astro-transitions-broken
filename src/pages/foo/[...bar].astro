@@ -8,9 +8,63 @@ import type { GetStaticPaths } from "astro";
 export const getStaticPaths = (() => {
   return [{ params: { bar: "bar" } }, { params: { bar: undefined } }];
 }) satisfies GetStaticPaths;
+
+const anim = {
+  old: {
+    name: "flyInOut",
+    duration: "1s",
+    easing: "linear",
+    fillMode: "forwards",
+  },
+  new: {
+    name: "flyInOut",
+    duration: "1s",
+    direction: "reverse",
+    easing: "linear",
+    fillMode: "fowards",
+  },
+};
+
+const myFade = {
+  forwards: anim,
+  backwards: anim,
+};
 ---
 
-<Layout title="This does not work" transition:name="layout" transition:persist>
-  <Persistent client:load transition:name="persistent" transition:persist />
-  {Astro.params.bar && <Overlay />}
+<style is:global>
+  /* Exit transition */
+  ::view-transition-old(overlay):only-child {
+    animation: 1s flyInOut linear;
+  }
+</style>
+
+<style>
+  .container {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+</style>
+
+<Layout title="This does not work">
+  <Persistent client:load transition:persist="flow" />
+  {
+    Astro.params.bar && (
+      <div
+        class="container"
+        transition:name="overlay"
+        transition:animate={myFade}
+      >
+        <Overlay />
+      </div>
+    )
+  }
+  <!-- <div transition:name="hiddenDiv" transition:animate={myFade}></div> -->
 </Layout>
