@@ -1,36 +1,12 @@
----
-const anim = {
-  old: {
-    name: "flyInOut",
-    duration: "1s",
-    easing: "linear",
-  },
-  new: {
-    name: "flyInOut",
-    duration: "1s",
-    direction: "reverse",
-    easing: "linear",
-    fillMode: "forwards",
-  },
-};
-
-const myFade = {
-  forwards: anim,
-  backwards: anim,
-};
----
-
 <a href="/foo">
-  <div class="container" transition:name="overlay" transition:animate={myFade}>
-    Go back to /foo
-  </div>
+  <div class="container">Go back to /foo</div>
 </a>
 
 <style>
   .container {
-    position: absolute;
+    /* position: absolute; */
     height: 100%;
-    width: 50%;
+    width: 100%;
     background: black;
     display: flex;
     justify-content: center;
